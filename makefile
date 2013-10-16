@@ -1,5 +1,5 @@
 CC=g++ -Wall -O2 
-FLAGS=-I /aux/brian/local/include -L /aux/brian/local/lib -ltesseract -llept
+FLAGS=-I /aux/brian/local/include -L /aux/brian/local/lib -ltesseract -llept -lopencv_core
 UP=Utilities/
 SC=Scanner
 SL=ScanLine
@@ -7,7 +7,7 @@ UT=Utils
 
 main: ReadImage.cpp Compare.cpp Utils.o $(SC).o $(SL).o makefile 
 	$(CC) $(FLAGS) -o readimg ReadImage.cpp Utils.o
-	$(CC) -o comp Compare.cpp $(SC).o $(UT).o $(SL).o
+#	$(CC) -o comp Compare.cpp $(SC).o $(UT).o $(SL).o
 
 Utils.o: $(UP)$(UT).cpp $(UP)$(UT).h
 	$(CC) -c $(UP)$(UT).cpp

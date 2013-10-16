@@ -11,9 +11,16 @@
 using namespace std;
 using namespace cv;
 
+enum side
+{
+  left_side, right_side, top_side, bottom_side 
+};
+
+void border(const Mat&, int);
+
 int main(int argc, char** varg)
 {
-  Mat image;
+  Mat im;
   ofstream outStream;
   if(argc < 3)
   {
@@ -44,4 +51,22 @@ int main(int argc, char** varg)
   pixDestroy(&image);
 
   return 0;
+}
+
+void border(const Mat& pic, side which)
+{
+  Mat bar;
+  Rect roi;
+  if(which == bottom_side)
+  {
+    roi = Rect(0, pic.cols - 15, pic.rows, 15);
+    bar = Mat(pic, roi);
+    double sample = bar(Range(0, bar.rows), Range(0, 15));
+  }
+  
+  if(which == left_side)
+  { 
+    return;
+  }
+  return;
 }
